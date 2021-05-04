@@ -31,8 +31,10 @@ defmodule Elasticsearch.Index do
     name = build_name(alias)
     config = Config.get(cluster)
     %{settings: settings_file} = index_config = config[:indexes][alias]
+    priv_dir_path = :code.priv_dir(config[:otp_app])
+    settings_file_path = Path.join(priv_dir_path, settings_file)
 
-    with :ok <- create_from_file(config, name, settings_file),
+    with :ok <- create_from_file(config, name, settings_file_path),
          :ok <- Bulk.upload(config, name, index_config),
          :ok <- __MODULE__.alias(config, name, to_string(alias)),
          :ok <- clean_starting_with(config, to_string(alias), 2),

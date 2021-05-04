@@ -101,7 +101,7 @@ defmodule Elasticsearch.Cluster do
         default_options: [ssl: [{:versions, [:'tlsv1.2']}],
         indexes: %{
           posts: %{
-            settings: "priv/elasticsearch/posts.json",
+            settings: "elasticsearch/posts.json",
             store: MyApp.ElasticsearchStore,
             sources: [MyApp.Post],
             bulk_page_size: 5000,

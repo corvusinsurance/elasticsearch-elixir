@@ -156,7 +156,7 @@ defmodule Mix.Tasks.Elasticsearch.BuildTest do
           api: Elasticsearch.API.HTTP,
           indexes: %{
             posts: %{
-              settings: "priv/nonexistent.json",
+              settings: "nonexistent.json",
               store: Elasticsearch.Test.Store,
               sources: [Post],
               bulk_page_size: 1,
@@ -167,7 +167,7 @@ defmodule Mix.Tasks.Elasticsearch.BuildTest do
 
       assert_raise Mix.Error,
                    """
-                   Settings file not found at priv/nonexistent.json.
+                   Settings file not found at nonexistent.json.
                    """,
                    fn ->
                      rerun("elasticsearch.build", ["posts", "--cluster", inspect(ErrorCluster)])

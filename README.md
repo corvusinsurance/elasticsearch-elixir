@@ -78,7 +78,9 @@ config :my_app, MyApp.ElasticsearchCluster,
       # This file describes the mappings and settings for your index. It will
       # be posted as-is to Elasticsearch when you create your index, and
       # therefore allows all the settings you could post directly.
-      settings: "priv/elasticsearch/posts.json",
+      # Store this file under the `priv` directory for it to get picked up.
+      # For example this translates to `priv/elasticsearch/posts.json` at runtime.
+      settings: "elasticsearch/posts.json",
 
       # This store module must implement a store behaviour. It will be used to
       # fetch data for each source in each indexes' `sources` list, below:
@@ -203,9 +205,9 @@ As AWS does not provide credentials' based http authentication, you can use the 
 To use this, just add `sigaws` to your dependencies and add this to your configuration:
 
 ```elixir
-# Add to deps 
+# Add to deps
 def deps do
-  [          
+  [
     # ...
     {:sigaws, ">= 0.0.0"}
   ]

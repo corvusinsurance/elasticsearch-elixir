@@ -20,7 +20,7 @@ defmodule Elasticsearch.Cluster.Config do
     from_app =
       otp_app
       |> Application.get_env(module, [])
-      |> Enum.into(%{})
+      |> Enum.into(%{otp_app: otp_app})
 
     Map.merge(from_app, config)
   end
